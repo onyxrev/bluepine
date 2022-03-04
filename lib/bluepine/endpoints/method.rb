@@ -20,11 +20,12 @@ module Bluepine
         status:      200,
         title:       nil,
         description: nil,
+        summary:     nil,
         validators:  [],
       }.freeze
 
       attr_reader   :verb, :path, :action, :params, :schema, :status, :as
-      attr_accessor :title, :description
+      attr_accessor :title, :description, :summary
 
       def initialize(verb, action:, path: "/", **options)
         @options = DEFAULT_OPTIONS.merge(options)
@@ -39,6 +40,7 @@ module Bluepine
         @status  = @options[:status]
         @title   = @options[:title]
         @description = @options[:description]
+        @summary     = @options[:summary]
         @validator   = nil
         @validators  = @options[:validators]
         @resolver    = nil

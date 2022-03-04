@@ -7,6 +7,13 @@ class Bluepine::Endpoints::MethodTest < Minitest::Spec
     ActionController::Parameters.new(params)
   end
 
+  describe "#summary" do
+    it "sets the summary" do
+      @method = create(:post, action: :create, summary: "pants")
+      assert_equal @method.summary, "pants"
+    end
+  end
+
   describe "#permit_params" do
     before do
       @method = create(:post, action: :create, params: lambda {

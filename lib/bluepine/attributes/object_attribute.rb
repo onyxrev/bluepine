@@ -43,10 +43,16 @@ module Bluepine
       #   string :username (or array, number etc)
       def method_missing(type, name = nil, options = {}, &block)
         if Attributes.registry.key?(type)
-          @attributes[name] = Attributes.create(type, name, options, &block)
+          register_attribute(type, name, options, &block)
         else
           super
         end
+      end
+
+      # `schema` is used to access the schema, so we'll use `ref` as an alias,
+      # essentially, for atting a schema attribute
+      def ref(name, options = {})
+        register_attribute(:schema, name, options)
       end
 
       def respond_to_missing?(method, *)
@@ -65,6 +71,12 @@ module Bluepine
 
       def keys
         @attributes.keys
+      end
+
+      private
+
+      def register_attribute(type, name, options, &block)
+        @attributes[name] = Attributes.create(type, name, options, &block)
       end
     end
   end

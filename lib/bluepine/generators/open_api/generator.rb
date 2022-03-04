@@ -131,7 +131,7 @@ module Bluepine
             parameters: generate_params(method, base_url),
           }.tap do |operation|
             operation[:requestBody] = generate_request_params(method) if method.body?
-            operation[:summary]     = method.description if method.description
+            operation[:summary]     = method.summary || method.description
             operation[:responses]   = generate_responses(method)
           end
         end

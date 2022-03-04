@@ -28,6 +28,16 @@ class Bluepine::Attributes::ObjectAttributeTest < BaseAttribute
     end
   end
 
+  describe "#ref" do
+    it "registers a schema attribute" do
+      attr = create do
+        ref :pants
+      end
+
+      assert_equal attr.attributes[:pants].class, Bluepine::Attributes::SchemaAttribute
+    end
+  end
+
   describe "#group" do
     context "when options is given" do
       it "should assign default options to all attributes" do

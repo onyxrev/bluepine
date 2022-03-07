@@ -79,7 +79,13 @@ module Bluepine
       # Automatically adds it self as schema value
       options[:schema] = options.fetch(:schema, schema)
 
-      @methods[action.to_sym] = Bluepine::Endpoints::Method.new(verb, action: action, path: path, **options)
+      @methods[action.to_sym] = method_class.new(verb, action: action, path: path, **options)
+    end
+
+    protected
+
+    def method_class
+      Bluepine::Endpoints::Method
     end
 
     private

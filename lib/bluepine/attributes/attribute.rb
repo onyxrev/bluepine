@@ -41,6 +41,7 @@ module Bluepine
           default:      default,
           description:  description,
           attributes:   attributes.values&.map(&:options),
+          example:      example
         })
       end
 
@@ -94,6 +95,10 @@ module Bluepine
 
       def attributes
         {}
+      end
+
+      def example
+        @options[:example]
       end
 
       # deprecated attribute should be listed in schema

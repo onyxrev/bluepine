@@ -87,4 +87,13 @@ class Bluepine::AttributesTest < Minitest::Spec
       end
     end
   end
+
+  describe "#example" do
+    it "registers the example" do
+      attr = create(:string, :name, example: "This is an example")
+
+      assert_equal "This is an example", attr.options[:example]
+      binding.pry
+    end
+  end
 end

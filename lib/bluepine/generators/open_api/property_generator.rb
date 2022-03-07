@@ -82,6 +82,7 @@ module Bluepine
             type: attr.native_type,
           }.tap do |property|
             property[:description]     = attr.description if attr.description.present?
+            property[:example]         = attr.example if attr.example.present?
             property[:default]         = attr.default if attr.default
             property[:enum]            = attr.in if attr.in
             property[:nullable]        = attr.null if attr.null

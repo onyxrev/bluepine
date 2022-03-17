@@ -130,6 +130,11 @@ module Bluepine
       def value(value)
         value.nil? ? default : value
       end
+
+      # does this live on the object definition itself rather than in the properties?
+      def top_level?
+        false
+      end
     end
   end
 end

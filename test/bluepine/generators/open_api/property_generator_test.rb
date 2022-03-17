@@ -308,6 +308,46 @@ class Bluepine::Generators::OpenAPI::PropertyGeneratorTest < Bluepine::Generator
           assert_equal expected, result
         end
       end
+
+      context "with a custom attribute that is identified as top level" do
+        it "is added outside the property list" do
+          class ReallyFunAttribute < Bluepine::Attributes::StringAttribute
+            def initialize(value, options = {})
+              super
+              @name = :"x-reallyfun"
+              @options[:default] = value
+            end
+
+            def private
+              true
+            end
+
+            def top_level?
+              true
+            end
+
+            def value(_value)
+              @options[:default]
+            end
+          end
+
+          Bluepine::Attributes.register(:reallyfun, ReallyFunAttribute)
+
+          expected = {
+            type: "object",
+            :"x-reallyfun" => "pants",
+            properties: {}
+          }
+
+          object = create_object("test") do
+            reallyfun "pants"
+          end
+
+          result = generate_property(object)
+
+          assert_equal expected, result
+        end
+      end
     end
   end
 end

@@ -134,6 +134,7 @@ module Bluepine
 
             summary = method.summary || method.description
             operation[:summary]     = summary if summary.present?
+            operation[:operationId] = method.operation_id if method.operation_id.present?
 
             operation[:responses]   = generate_responses(method)
           end

@@ -8,9 +8,16 @@ class Bluepine::Endpoints::MethodTest < Minitest::Spec
   end
 
   describe "#summary" do
-    it "sets the summary" do
+    it "returns the summary" do
       @method = create(:post, action: :create, summary: "pants")
       assert_equal @method.summary, "pants"
+    end
+  end
+
+  describe "#operation_id" do
+    it "returns the operation_id" do
+      @method = create(:post, action: :create, operation_id: "deactivatePants")
+      assert_equal @method.operation_id, "deactivatePants"
     end
   end
 

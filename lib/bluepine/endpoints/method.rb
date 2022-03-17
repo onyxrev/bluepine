@@ -13,19 +13,20 @@ module Bluepine
     #   })
     class Method
       DEFAULT_OPTIONS = {
-        as:          nil,
-        params:      [],
-        exclude:     false,
-        schema:      nil,
-        status:      200,
-        title:       nil,
-        description: nil,
-        summary:     nil,
-        validators:  [],
+        as:           nil,
+        params:       [],
+        exclude:      false,
+        schema:       nil,
+        status:       200,
+        title:        nil,
+        description:  nil,
+        summary:      nil,
+        validators:   [],
+        operation_id: nil
       }.freeze
 
       attr_reader   :verb, :path, :action, :params, :schema, :status, :as
-      attr_accessor :title, :description, :summary
+      attr_accessor :title, :description, :summary, :operation_id
 
       def initialize(verb, action:, path: "/", **options)
         @options = DEFAULT_OPTIONS.merge(options)
@@ -34,17 +35,18 @@ module Bluepine
         @action  = action
 
         # Create ParamsAttribute instance
-        @params  = create_params(action, options.slice(:params, :schema, :exclude))
-        @schema  = @options[:schema]
-        @as      = @options[:as]
-        @status  = @options[:status]
-        @title   = @options[:title]
-        @description = @options[:description]
-        @summary     = @options[:summary]
-        @validator   = nil
-        @validators  = @options[:validators]
-        @resolver    = nil
-        @result      = nil
+        @params       = create_params(action, options.slice(:params, :schema, :exclude))
+        @schema       = @options[:schema]
+        @as           = @options[:as]
+        @status       = @options[:status]
+        @title        = @options[:title]
+        @description  = @options[:description]
+        @summary      = @options[:summary]
+        @operation_id = @options[:operation_id]
+        @validator    = nil
+        @validators   = @options[:validators]
+        @resolver     = nil
+        @result       = nil
       end
 
       def validate(params = {}, resolver = nil)

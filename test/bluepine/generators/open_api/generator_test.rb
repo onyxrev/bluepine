@@ -188,7 +188,15 @@ class Bluepine::Generators::OpenAPI::GeneratorTest < Bluepine::Generators::BaseT
       end
     end
 
-    context "when speicifying as: option" do
+    context "with an operation id" do
+      it "adds the operation id" do
+        method    = create_method("/:id/:user_id", schema: :customer, as: :list, operation_id: "deactivatePants")
+        responses = generator.generate_operation(method)
+        assert_equal "deactivatePants", responses[:operationId]
+      end
+    end
+
+    context "when speciifying as: option" do
       it "should generate Response Object with type :array" do
         method    = create_method("/:id/:user_id", schema: :customer, as: :list)
         responses = generator.generate_responses(method)

@@ -23,11 +23,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency "activemodel", ">= 5.0", "< 6.1"
 
+  s.add_development_dependency "actionpack", ">= 5.0"
   s.add_development_dependency "bundler", "~> 2.0"
   s.add_development_dependency "rake", "~> 12.0"
   s.add_development_dependency "minitest", "~> 5.0"
   s.add_development_dependency "mocha", "~> 1.8"
   s.add_development_dependency "simplecov", "~> 0.16"
-  s.add_development_dependency "actionpack", "~> 6.0"
   s.add_development_dependency "rubocop", "~> 0.71.0"
 end

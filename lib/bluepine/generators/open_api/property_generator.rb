@@ -77,7 +77,7 @@ module Bluepine
         def build(attr, options = {})
           assert_kind_of Bluepine::Attributes::Attribute, attr
 
-          top_level_properties = attr.attributes.values.select { |a| a.top_level? }
+          operation_level_properties = attr.attributes.values.select { |a| a.operation_level? }
 
           # build base property
           {
@@ -92,7 +92,7 @@ module Bluepine
             property[:pattern]         = build_pattern(attr.match) if attr.match
             property["x-omise-schema"] = options[:schema] if options[:schema].present?
 
-            top_level_properties.each do |p|
+            operation_level_properties.each do |p|
               property[p.name] = p.value(nil)
             end
           end

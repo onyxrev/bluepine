@@ -132,7 +132,7 @@ module Bluepine
       end
 
       # does this live on the object definition itself rather than in the properties?
-      def top_level?
+      def operation_level?
         false
       end
     end

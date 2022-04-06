@@ -322,7 +322,7 @@ class Bluepine::Generators::OpenAPI::PropertyGeneratorTest < Bluepine::Generator
               true
             end
 
-            def top_level?
+            def operation_level?
               true
             end
 

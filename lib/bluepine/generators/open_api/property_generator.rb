@@ -103,7 +103,7 @@ module Bluepine
           ref = options[:as] || attr
 
           {
-            "$ref": "#/components/schemas/#{ref}",
+            :"$ref" => "#/components/schemas/#{ref}",
           }
         end
 

@@ -142,8 +142,8 @@ module Bluepine
 
         def generate_request_params(method)
           {
-            "content": {
-              "application/x-www-form-urlencoded": {
+            content: {
+              :"application/x-www-form-urlencoded" => {
                 schema: generate_schema(method.params),
               },
             },
@@ -166,7 +166,7 @@ module Bluepine
 
         def generate_json_response(method)
           {
-            "application/json": {
+            :"application/json" => {
               schema: PropertyGenerator.generate(method.schema, as: method.as),
             },
           }

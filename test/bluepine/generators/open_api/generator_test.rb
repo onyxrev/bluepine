@@ -161,9 +161,9 @@ class Bluepine::Generators::OpenAPI::GeneratorTest < Bluepine::Generators::BaseT
         200 => {
           description: "Customer",
           content: {
-            "application/json": {
+            :"application/json" => {
               schema: {
-                "$ref": "#/components/schemas/customer",
+                :"$ref" => "#/components/schemas/customer",
               },
             },
           },
@@ -205,9 +205,9 @@ class Bluepine::Generators::OpenAPI::GeneratorTest < Bluepine::Generators::BaseT
           200 => {
             description: "Customer",
             content: {
-              "application/json": {
+              :"application/json" => {
                 schema: {
-                  "$ref": "#/components/schemas/list",
+                  :"$ref" => "#/components/schemas/list",
                 },
               },
             },

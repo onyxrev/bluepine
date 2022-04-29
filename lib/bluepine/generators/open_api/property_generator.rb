@@ -100,10 +100,20 @@ module Bluepine
 
         # create $ref
         def build_ref(attr, options = {})
-          ref = options[:as] || attr
+          return build_list_ref(attr, options) if options[:as] == :list
+          build_singular_ref(attr, options)
+        end
 
+        def build_singular_ref(attr, _options)
           {
-            :"$ref" => "#/components/schemas/#{ref}",
+            :"$ref" => "#/components/schemas/#{attr}",
+          }
+        end
+
+        def build_list_ref(attr, options)
+          {
+            type: "array",
+            items: build_singular_ref(attr, options)
           }
         end
 

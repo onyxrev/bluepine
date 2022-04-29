@@ -156,9 +156,24 @@ module Bluepine
           }
         end
 
+        # def description(method)
+        #   return EMPTY_RESPONSE unless method.schema.present?
+
+        #   schema = method.schema.to_s.humanize
+        #   return schema.pluralize if method.as == :list
+        #   schema
+        # end
+
+        def description(method)
+          return EMPTY_RESPONSE if method.schema.nil?
+
+          return method.schema.to_s&.humanize.pluralize if method.as == :list
+          method.schema.to_s&.humanize
+        end
+
         def generate_response(method)
           {
-            description: method.schema&.to_s&.humanize || EMPTY_RESPONSE,
+            description: description(method),
           }.tap do |response|
             response[:content] = generate_json_response(method) if method.schema.present?
           end

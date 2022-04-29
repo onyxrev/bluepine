@@ -61,11 +61,14 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Charge",
+            "description": "Charges",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/list"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/charge"
+                  }
                 }
               }
             }

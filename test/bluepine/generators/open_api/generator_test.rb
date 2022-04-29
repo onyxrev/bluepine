@@ -106,7 +106,7 @@ class Bluepine::Generators::OpenAPI::GeneratorTest < Bluepine::Generators::BaseT
           result   = generator.generate_request_params(method)
           expected = {
             content: {
-              "application/x-www-form-urlencoded": {
+              :"application/x-www-form-urlencoded" => {
                 schema: {
                   type: "object",
                   properties: {
@@ -203,11 +203,14 @@ class Bluepine::Generators::OpenAPI::GeneratorTest < Bluepine::Generators::BaseT
 
         expected = {
           200 => {
-            description: "Customer",
+            description: "Customers",
             content: {
               :"application/json" => {
                 schema: {
-                  :"$ref" => "#/components/schemas/list",
+                  type: "array",
+                  items: {
+                    :"$ref" => "#/components/schemas/customer",
+                  }
                 },
               },
             },
